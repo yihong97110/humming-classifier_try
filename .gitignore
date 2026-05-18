@@ -1,0 +1,35 @@
+# Audio data
+data/
+MLEndHWII_sample_400/
+MLEndHWII_sample_400.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output files
+*.png
+*.csv
+run_output.txt
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
