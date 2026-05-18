@@ -224,8 +224,8 @@ def extract_mfcc_features(audio, sr, n_mfcc=13, hop_length=512):
         mfcc_delta_mean, mfcc_delta_std,  # 13 + 13 = 26
         mfcc_delta2_mean           # 13
     ])
-    
-    return feature_vector  # 共 78 维
+
+    return feature_vector  # 共 65 维
 
 
 def extract_chroma_features(audio, sr, hop_length=512):
@@ -292,8 +292,8 @@ def extract_all_features(audio, sr, hop_length=512):
     # 2. 旋律轮廓特征（6维）- 从预计算的f0提取，不再重复计算pyin
     contour_features = extract_melody_contour_features_from_f0(f0, voiced_flag)
     
-    # 3. MFCC特征（78维）
-    mfcc_features = extract_mfcc_features(audio, sr, hop_length)
+    # 3. MFCC特征（65维）
+    mfcc_features = extract_mfcc_features(audio, sr, n_mfcc=13, hop_length=hop_length)
     
     # 4. 色度特征（24维）
     chroma_features = extract_chroma_features(audio, sr, hop_length)

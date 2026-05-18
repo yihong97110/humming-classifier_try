@@ -33,3 +33,10 @@ run_output.txt
 .DS_Store
 Thumbs.db
 desktop.ini
+
+analy/
+classification_results.csv
+confusion_matrix.png
+pca_visualization.png
+run_output.txt
+
