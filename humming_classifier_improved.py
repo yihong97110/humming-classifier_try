@@ -498,7 +498,9 @@ def plot_confusion_matrix(y_true, y_pred, label_encoder, title='混淆矩阵'):
     plt.ylabel('真实标签')
     plt.tight_layout()
     plt.savefig('confusion_matrix.png', dpi=150)
-    plt.show()
+    plt.show(block=False)
+    plt.pause(2)
+    plt.close()
     print("混淆矩阵已保存为 confusion_matrix.png")
 
 
@@ -523,7 +525,9 @@ def visualize_features_pca(features, labels, label_encoder, title='特征PCA可�
     plt.ylabel(f'主成分2 ({pca.explained_variance_ratio_[1]*100:.1f}%)')
     plt.tight_layout()
     plt.savefig('pca_visualization.png', dpi=150)
-    plt.show()
+    plt.show(block=False)
+    plt.pause(2)
+    plt.close()
     print(f"PCA可视化已保存为 pca_visualization.png")
 
 
@@ -583,17 +587,23 @@ def main():
     
     # 7. 可视化
     print("\n[步骤6] 生成可视化结果")
+    plt.close('all')  # 清理已有图形，防止阻塞
     plot_confusion_matrix(y_test, results[best_name]['predictions'], label_encoder)
     visualize_features_pca(features_scaled, labels, label_encoder)
+    plt.close('all')  # 确保所有图形关闭
     
     # 8. 保存结果
     print("\n[步骤7] 保存分类结果")
+    
+    # 用最佳模型预测全部数据（避免测试集预测与全量文件名长度不匹配）
+    all_predictions = best_model.predict(features_scaled)
+    all_pred_labels = label_encoder.inverse_transform(all_predictions)
     
     # 创建结果DataFrame
     results_df = pd.DataFrame({
         'filename': filenames,
         'true_label': labels,
-        'predicted_label': label_encoder.inverse_transform(results[best_name]['predictions']),
+        'predicted_label': all_pred_labels,
         'audio_type': types
     })
     

@@ -11,6 +11,7 @@ This project builds a supervised learning pipeline to classify humming and whist
 - **139-dimensional multi-modal audio features**: MFCC, pitch (F0), melody contour, chroma, and temporal features
 - **4 classifiers compared**: KNN, SVM, Random Forest, Gradient Boosting
 - **pYIN-based pitch detection**: Captures melody contour as the core recognition signal
+- **Optimized feature extraction**: pYIN computed once and shared across pitch & contour features (~50% faster)
 - **Role-aware evaluation**: Separate accuracy metrics for humming vs. whistling
 
 ## Dataset
